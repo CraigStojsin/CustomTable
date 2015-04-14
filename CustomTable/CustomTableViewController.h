@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CustomTableViewController.h
 //  CustomTable
 //
 //  Created by Craig Stojsin on 2015-04-14.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface CustomTableViewController : UITableViewController
+
 
 
 @end
-
