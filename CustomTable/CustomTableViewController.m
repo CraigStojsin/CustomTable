@@ -14,9 +14,9 @@
 
 @implementation CustomTableViewController
 {
-    NSArray* recipeNames;
-    NSArray* recipeTimes;
-    NSArray* recipeImages;
+    NSMutableArray* recipeNames;
+    NSMutableArray* recipeTimes;
+    NSMutableArray* recipeImages;
     BOOL*  recipeChecked[16];
 }
 
@@ -62,23 +62,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    recipeTimes = @[@"One Hour",@"Three Hours",@"Two Hours",@"Four Hours"
+    recipeTimes = [NSMutableArray arrayWithObjects: @"One Hour",@"Three Hours",@"Two Hours",@"Four Hours"
                     ,@"Two Hours",@"Ten Minutes"
                     ,@"One and a half Hours",@"Two Hours",@"Two Hours",@"Two Hours"
                     ,@"Two Hours",@"TwoHours",@"Two Hours"
-                    ,@"Two Hours",@"Two Hours",@"Two Hours"];
+                    ,@"Two Hours",@"Two Hours",@"Two Hours", nil];
     
     
-    recipeNames = @[@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast",@"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White ChocolateDonut",@"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodlewith BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini"];
+    recipeNames = [NSMutableArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast",@"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White ChocolateDonut",@"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodlewith BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini",nil];
     
     
     
-    recipeImages = @[@"egg_benedict.jpg", @"mushroom_risotto.jpg", @"full_breakfast.jpg",
+    recipeImages = [NSMutableArray arrayWithObjects:@"egg_benedict.jpg", @"mushroom_risotto.jpg", @"full_breakfast.jpg",
                      @"hamburger.jpg", @"ham_and_egg_sandwich.jpg", @"creme_brelee.jpg",
                      @"white_chocolate_donut.jpg", @"starbucks_coffee.jpg", @"vegetable_curry.jpg",
                      @"instant_noodle_with_egg.jpg", @"noodle_with_bbq_pork.jpg",
                      @"japanese_noodle_with_pork.jpg", @"green_tea.jpg", @"thai_shrimp_cake.jpg",
-                     @"angry_birds_cake.jpg", @"ham_and_cheese_panini.jpg"];
+                     @"angry_birds_cake.jpg", @"ham_and_cheese_panini.jpg",nil];
     
     
    
@@ -129,6 +129,17 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:
+(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+ 
+    [recipeNames removeObjectAtIndex:indexPath.row];
+    [recipeTimes removeObjectAtIndex:indexPath.row];
+    [recipeImages removeObjectAtIndex:indexPath.row];
+    
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+    
+}
 
 
 
